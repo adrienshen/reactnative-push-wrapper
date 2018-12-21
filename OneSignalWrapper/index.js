@@ -9,7 +9,8 @@ import { AppRegistry, Platform } from "react-native";
 import OneSignal from "react-native-onesignal";
 import MyInlineWeb from "./webviewcontainer";
 
-const ONESIGNAL_TOKEN = "a58ca839-9e6a-43a9-8d27-489540407383";
+import { OS_PUSH_TOKEN } from "react-native-dotenv";
+console.info("OS_PUSH_TOKEN: ", OS_PUSH_TOKEN);
 
 export default class OneSignalWrapper extends Component {
   constructor(properties) {
@@ -72,7 +73,7 @@ export default class OneSignalWrapper extends Component {
   triggerSubscribeNativePush = async () => {
     console.log("3. register OneSignal begins");
     // Do OneSignal stuff
-    await OneSignal.init(ONESIGNAL_TOKEN, { kOSSettingsKeyAutoPrompt: true });
+    await OneSignal.init(OS_PUSH_TOKEN, { kOSSettingsKeyAutoPrompt: true });
     var providedConsent = await OneSignal.userProvidedPrivacyConsent();
     console.log("providedConsent: ", providedConsent);
 
